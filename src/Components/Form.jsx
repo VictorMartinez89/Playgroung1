@@ -47,8 +47,8 @@ const Form = () => {
 
   return (
     <div>
-      <form onSubmit={send}>
-        <div>
+      <form className="form1" onSubmit={send}>
+        <div className="">
           <label>Nombre</label>
           <input type="text" placeholder="Ingrese su nombre" onChange={handleName}/>
         
