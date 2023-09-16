@@ -1,15 +1,33 @@
-import React from "react";
 import styles from '../doctor.module.css'
 import {Link} from 'react-router-dom'
 import Detail from "../Routes/Detail";
+import React from "react";
+import { useContext, useState } from 'react';
+  
+
+import ContextProvider  from './utils/global.context.jsx';
+import Favs from '../Routes/Favs';
+
+
+
 
 const Card = ({ name, username, id, email, phone, website }) => {
 
-  
 
-  const addFav = ()=>{
+   //const [ state, setState] = useState()
+   //var dispatch = null;
+   //[state, dispatch]= useContext(ContextProvider)
+    
+const addFav = ()=>{
+
     // Aqui iria la logica para agregar la Card en el localStorage
+    //[doctor, setDoctor] = useState([]); 
+//    localStorage.getItem(prop.count) 
+ 
+  
   }
+
+
 
   return (
     <div className="card_one">
@@ -22,7 +40,7 @@ const Card = ({ name, username, id, email, phone, website }) => {
               </Link>
             <h2>Name: {name}</h2>
             <h2>Username: {username}</h2>
-            <h2>Email:{email}</h2>
+        
             <h2>Website:{website}</h2>
             <h2>Telephone: {phone}</h2>
             </nav>
@@ -32,7 +50,12 @@ const Card = ({ name, username, id, email, phone, website }) => {
         {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
 
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} id={styles.button}className="favButton">Add fav</button>
+        <h3>
+          Favs:{}
+          </h3>
+        <button onClick={Favs}
+            //() => dispatch({ type: 'INCREMENT' })}
+            id={styles.button} className="favButton">Add fav</button>
     </div>
   );
 };

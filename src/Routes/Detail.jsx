@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
-
+import { useNavigate, useParams } from 'react-router-dom'
+import ContextGlobal  from '../Components/utils/global.context';
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
@@ -11,8 +11,11 @@ const Detail = () => {
   const[doctor, setDoctor]= useState([]);
   const[loading, setLoading] = useState(false);
   const {id}= useParams();
-
-
+  const navigate = useNavigate();
+ 
+  const goBack = () => {
+    navigate(-1)
+  };
 
   useEffect(() =>{
 
@@ -73,8 +76,13 @@ const Detail = () => {
         </h3>
        </div>
       {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
+         <div>
+            <button onClick={goBack}>Go back</button>
+         </div>
+         
          </ul>
         )}
+        
     </>
   )
 }

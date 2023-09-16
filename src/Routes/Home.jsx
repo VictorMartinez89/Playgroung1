@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react';
 import Card from '../Components/Card'
-import { response } from 'msw';
+import Favs from './Favs';
+import ThemeContext from '../context';
+
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
 
   // 
-
+  const {themes} = useContext(ThemeContext);
   const [doctors, setDoctors]= useState([]);
   const[loading, setLoading] = useState(false);
 
@@ -30,6 +31,7 @@ const list = doctors.map((d, i) => (
   
   <div className={`card${i}`} key={i}>
   <Card  name={d.name} username={d.username} id={d.id} email={d.email} phone={d.phone} website={d.website}/>
+  <Favs name={d.name} id={d.id} email={d.email} phone={d.phone}/>
   </div>
 
 ));
@@ -48,9 +50,13 @@ const list = doctors.map((d, i) => (
           </li>
           </ul>
         ) : (
+          <div 
+         style={{background: themes.background, color:themes.font}}
+          >
           <ul>
             <li>{list}</li>
           </ul>
+          </div>
         )
       
         
