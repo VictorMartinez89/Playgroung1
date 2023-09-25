@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Card from '../Components/Card'
 import Favs from './Favs';
-import ThemeContext from '../context';
+
 
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
@@ -9,7 +9,7 @@ import ThemeContext from '../context';
 const Home = () => {
 
   // 
-  const {themes} = useContext(ThemeContext);
+
   const [doctors, setDoctors]= useState([]);
   const[loading, setLoading] = useState(false);
 
@@ -51,7 +51,7 @@ const list = doctors.map((d, i) => (
           </ul>
         ) : (
           <div 
-         style={{background: themes.background, color:themes.font}}
+        
           >
           <ul>
             <li>{list}</li>

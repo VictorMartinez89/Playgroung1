@@ -8,8 +8,6 @@ import {Link} from 'react-router-dom'
 
 const Favs = ({id, name, phone, email}) => {
 
-  //const { state} = useContext(ContextProvider);
-
   return (
     <>
 
