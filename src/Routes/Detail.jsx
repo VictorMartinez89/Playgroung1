@@ -1,15 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react';
+import {useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import ContextGlobal  from '../Components/utils/global.context';
+import { useContext} from 'react'
+import { ContextGlobal } from '../Components/utils/global.context';
+
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
  
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
-
+ 
   const[doctor, setDoctor]= useState([]);
   const[loading, setLoading] = useState(false);
+  
+  const {state} = useContext(ContextGlobal);
+  
   const {id}= useParams();
   const navigate = useNavigate();
  
@@ -38,7 +44,8 @@ const Detail = () => {
 
   return (   
     <>
-      <h1>Detail Dentist id </h1>
+    <div className='detailDiv' style={{ background: state.theme.backgroundDetail, color: state.theme.color}}>
+      <h1>Detail Dentist id: {doctor.id} </h1>
       
       {loading ?(
            <ul>
@@ -50,7 +57,8 @@ const Detail = () => {
           <ul>
      
       {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-       <div>
+       <div className='cardDetail' style={{ background: state.theme.backgroundCard, color: state.theme.color}}>
+        <img src='../Components/img/doctor2.jpg' alt='' width={200}/>
         <h1>Name: {doctor?.name}</h1>
         <h3>Username: {doctor?.username}</h3>
         <h3>ID:{doctor?.id}</h3> 
@@ -82,7 +90,7 @@ const Detail = () => {
          
          </ul>
         )}
-        
+     </div>   
     </>
   )
 }

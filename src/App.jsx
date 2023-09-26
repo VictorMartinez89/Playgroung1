@@ -16,10 +16,6 @@ import { ContextProvider } from './Components/utils/global.context';
 
 function App() {
 
-
-  //const providerValue = useMemo(()=>({themes,handleChangeTheme}),[themes,handleChangeTheme])
-
-
   return (
       <div className="App">
               <Navbar/>

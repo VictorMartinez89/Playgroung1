@@ -1,26 +1,37 @@
+import React from "react";
 import styles from '../doctor.module.css'
 import {Link} from 'react-router-dom'
-import React from "react";
-import Favs from '../Routes/Favs';
-
+import { useContext } from "react";
+import { ContextGlobal } from "./utils/global.context";
 
 
 
 const Card = ({ name, username, id, email, phone, website }) => {
 
-   
-  const addFav = ()=>{
+  const { state, dispatch } = useContext(ContextGlobal);
 
-    // Aqui iria la logica para agregar la Card en el localStorage
-    //[doctor, setDoctor] = useState([]); 
-//    localStorage.getItem(prop.count) 
-  
+  const isFav = state.favs.some((fav) => fav.id === id);
+  //const isFav = state.fav?.some((f)=> f.id === id)|| true;
+  //const isFav = state.favs.some((f)=> f.id === id);
+  //const isFav = true;
+
+  console.log("isfAV" + isFav)
+  const addFav = ()=>{
+    
+    if(isFav) {    
+      dispatch({ type: "REMOVE_FAV", payload: { id, name, username, email, phone, website } }); 
+      alert("Eliminadode Favoritos")
+    }else{
+      dispatch({ type: "ADD_FAVS", payload: { id, name, username, email, phone, website }});
+      alert(" Agregado a Favoritos")
+    }
   }
 
 
 
   return (
-    <div className="card_one">
+    <div className="card_one" style={{ background: state.theme.backgroundCard, color: state.theme.color}}>
+      <img className="card" src="../Components/img/doctor1.jpg " alt="" height="200px" width="480px"/>
         {/* En cada card deberan mostrar en name - username y el id */}
         <div key={name} id={styles.card_one}>
           <div >
@@ -41,10 +52,20 @@ const Card = ({ name, username, id, email, phone, website }) => {
 
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
         <h3>
-          Favs:{}
+          favs:{}
           </h3>
-        <button onClick={Favs}
-                className="favButton">Add fav</button>
+        <button className="favButton" onClick={addFav}>
+        {isFav ? (
+          <>
+          <button style={{background: "#FFFFFF" , color: state.theme.color}}> Add fav </button>
+          </>
+        ): (
+          <>
+          <button style={{background: "#000000" , color: state.theme.backgroundCard}}> No Add fav </button>
+          </>
+
+        )}
+        </button>
     </div>
   );
 };
